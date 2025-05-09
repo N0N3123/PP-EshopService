@@ -1,0 +1,6 @@
+@PP_Eshop_HostAddress = http://localhost:5081
+
+GET {{PP_Eshop_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
