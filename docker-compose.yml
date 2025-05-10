@@ -18,6 +18,26 @@ services:
     build:
       context: .
       dockerfile: UserService/Dockerfile
+
+  productservice:
+    image: ${DOCKER_REGISTRY-}productservice
+    depends_on:
+      - productdb
+    environment:
+      - CONNECTION_STRING=Server=${DB2_HOST};Database=${DB2_NAME};User Id=${DB2_USER};Password=${SA2_PASSWORD};Encrypt=False;TrustServerCertificate=True;
+    build:
+      context: .
+      dockerfile: ProductService/Dockerfile
+
+  productdb:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    environment:
+      SA_PASSWORD: "${SA2_PASSWORD}"
+      ACCEPT_EULA: "Y"
+    ports:
+      - "1434:1433"
+    volumes:
+      - mssql_data:/var/opt/mssql
       
   db:
     image: mcr.microsoft.com/mssql/server:2022-latest

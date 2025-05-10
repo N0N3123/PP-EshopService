@@ -1,4 +1,8 @@
 
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Security.Cryptography;
+
 namespace PP_Eshop
 {
     public class Program
@@ -8,6 +12,39 @@ namespace PP_Eshop
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
+
+            // JWT config
+
+            builder.Services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+            .AddJwtBearer(options =>
+            {
+                var rsa = RSA.Create();
+                rsa.ImportFromPem(File.ReadAllText("../data/public.key"));
+                var publicKey = new RsaSecurityKey(rsa);
+
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidateLifetime = true,
+                    ValidateIssuerSigningKey = true,
+                    ValidIssuer = "EShopNetCourse",
+                    ValidAudience = "Eshop",
+                    IssuerSigningKey = publicKey
+                };
+            });
+
+            builder.Services.AddAuthorization(options =>
+            {
+                options.AddPolicy("AdminOnly", policy =>
+                    policy.RequireRole("Administrator"));
+                options.AddPolicy("EmployeeOnly", policy =>
+                    policy.RequireRole("Employee"));
+            });
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -25,6 +62,7 @@ namespace PP_Eshop
 
             app.UseHttpsRedirection();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
 

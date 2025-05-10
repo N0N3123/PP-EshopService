@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Eshop.Domain.Migrations
+namespace Product.Domain.Models
 {
-    public class DataContext
+    public class CategoryModel
     {
+        public string Name { get; set; }
     }
 }
