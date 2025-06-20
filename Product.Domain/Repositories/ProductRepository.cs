@@ -19,22 +19,50 @@ namespace Product.Domain.Repositories
 
         public Task DeleteProductAsync(int id)
         {
-            throw new NotImplementedException();
+            var product = _context.Products.Find(id);
+            if (product != null)
+            {
+                _context.Products.Remove(product);
+                return _context.SaveChangesAsync();
+            }
+            throw new KeyNotFoundException("Product not found");
+
         }
 
         public Task<ProductModel> GetProductByNameAsync(string Name)
         {
-            throw new NotImplementedException();
+            var product = _context.Products.FirstOrDefault(p => p.Name.Equals(Name, StringComparison.OrdinalIgnoreCase));
+            if (product == null)
+            {
+                throw new KeyNotFoundException("Product not found");
+            }
+            return Task.FromResult(product);
         }
 
         public Task<IEnumerable<ProductModel>> GetProductsByCategoryAsync(string categoryName)
         {
-            throw new NotImplementedException();
+            var products = _context.Products.Where(p => p.Category.Name.Equals(categoryName, StringComparison.OrdinalIgnoreCase)).ToList();
+            if (!products.Any())
+            {
+                throw new KeyNotFoundException("No products found for the specified category");
+            }
+            return Task.FromResult<IEnumerable<ProductModel>>(products);
         }
 
         public Task UpdateProductAsync(ProductModel product)
         {
-            throw new NotImplementedException();
+            var existingProduct = _context.Products.Find(product.Id);
+            if (existingProduct == null)
+            {
+                throw new KeyNotFoundException("Product not found");
+            }
+            existingProduct.Name = product.Name;
+            existingProduct.Description = product.Description;
+            existingProduct.Price = product.Price;
+            existingProduct.Quantity = product.Quantity;
+            existingProduct.Category = product.Category;
+            existingProduct.UpdatedAt = DateTime.UtcNow; // Assuming UpdatedAt is a DateTime property
+            return _context.SaveChangesAsync();
         }
     }
 }
