@@ -14,7 +14,10 @@ namespace Product.Domain.Repositories
 
         public async Task<CustomerModel> GetCustomerByIdAsync(int id)
         {
-            return await _context.Set<CustomerModel>().FindAsync(id);
+            var customer = await _context.Set<CustomerModel>().FindAsync(id);
+            if (customer == null)
+                throw new KeyNotFoundException("Customer not found");
+            return customer;
         }
     }
 }

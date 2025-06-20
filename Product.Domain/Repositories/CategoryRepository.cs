@@ -22,7 +22,10 @@ namespace Product.Domain.Repositories
 
         public async Task<CategoryModel> GetByNameAsync(string name)
         {
-            return await _context.Categories.FirstOrDefaultAsync(c => c.Name == name);
+            var category = await _context.Categories.FirstOrDefaultAsync(c => c.Name == name);
+            if (category == null)
+                throw new KeyNotFoundException("Category not found");
+            return category;
         }
 
         public async Task<CategoryModel> AddAsync(CategoryModel category)

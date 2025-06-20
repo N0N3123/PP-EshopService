@@ -29,6 +29,9 @@ namespace Product.Domain.Models
                 .HasDefaultValueSql("GETDATE()")
                 .ValueGeneratedOnUpdate();
             modelBuilder.Entity<ProductModel>().HasKey(p => p.Id);
+            modelBuilder.Entity<ProductModel>()
+                .Property(p => p.Price)
+                .HasColumnType("decimal(18,2)");
 
             // Category
             modelBuilder.Entity<CategoryModel>().HasKey(c => c.Id);

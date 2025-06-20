@@ -16,9 +16,12 @@ namespace Product.Domain.Repositories
 
         public async Task<CartModel> GetCartByCustomerIdAsync(int customerId)
         {
-            return await _context.Carts
+            var cart = await _context.Carts
                 .Include(c => c.Items)
                 .FirstOrDefaultAsync(c => c.CustomerId == customerId);
+            if (cart == null)
+                throw new KeyNotFoundException("Cart not found");
+            return cart;
         }
 
         public async Task AddItemAsync(int cartId, CartItemModel item)
