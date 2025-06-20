@@ -10,6 +10,10 @@ namespace Product.Domain.Repositories
     public class ProductRepository : IProductRepository
     {
         private readonly DataContext _context;
+        public ProductRepository(DataContext context)
+        {
+            _context = context;
+        }
         public async Task<ProductModel> AddProductAsync(ProductModel product)
         {
             _context.Products.Add(product);

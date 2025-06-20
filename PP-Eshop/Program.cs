@@ -37,7 +37,6 @@ namespace PP_Eshop
                     IssuerSigningKey = publicKey
                 };
             });
-
             builder.Services.AddAuthorization(options =>
             {
                 options.AddPolicy("AdminOnly", policy =>
