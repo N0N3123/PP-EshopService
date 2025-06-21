@@ -17,7 +17,7 @@ namespace User.Application.Services
         {
             _settings = settings.Value;
             var rsa = RSA.Create();
-            rsa.ImportFromPem(File.ReadAllText("../data/private.key")); // Załaduj klucz prywatny RSA
+            rsa.ImportFromPem(File.ReadAllText("data/private.key")); // Załaduj klucz prywatny RSA
             var creds = new SigningCredentials(new RsaSecurityKey(rsa), SecurityAlgorithms.RsaSha256);
         }
 

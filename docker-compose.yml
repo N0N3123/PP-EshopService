@@ -37,7 +37,7 @@ services:
     ports:
       - "1434:1433"
     volumes:
-      - mssql_data:/var/opt/mssql
+      - product_data:/var/opt/mssql
       
   db:
     image: mcr.microsoft.com/mssql/server:2022-latest
@@ -57,3 +57,4 @@ services:
 
 volumes:
   mssql_data:
+  product_data:  

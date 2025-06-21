@@ -35,7 +35,7 @@ namespace Product.Domain.Repositories
 
         public Task<ProductModel> GetProductByNameAsync(string Name)
         {
-            var product = _context.Products.FirstOrDefault(p => p.Name.Equals(Name, StringComparison.OrdinalIgnoreCase));
+            var product = _context.Products.FirstOrDefault(p => p.Name.ToUpper() == Name.ToUpper());
             if (product == null)
             {
                 throw new KeyNotFoundException("Product not found");
