@@ -33,8 +33,15 @@ namespace ProductService.Controllers
             {
                 return BadRequest("Product name cannot be null or empty");
             }
-            var product = await _productRepository.GetProductByNameAsync(name);
-            return product != null ? Ok(product) : NotFound("Product not found");
+            try
+            {
+                var product = await _productRepository.GetProductByNameAsync(name);
+                return Ok(product);
+            }
+            catch (KeyNotFoundException)
+            {
+                return NotFound("Product not found");
+            }
         }
         [HttpPut("updateProduct")]
         public async Task<IActionResult> UpdateProduct([FromBody] ProductModel product)

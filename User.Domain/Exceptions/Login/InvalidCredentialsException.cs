@@ -2,6 +2,6 @@
 {
     public class InvalidCredentialsException : Exception
     {
-        public InvalidCredentialsException() : base("Incorect password or login") { }
+        public InvalidCredentialsException() : base("Invalid credentials") { }
     }
 }

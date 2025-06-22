@@ -12,7 +12,7 @@ namespace Product.Domain.Models
         public DataContext(DbContextOptions<DataContext> options) : base(options)
         {
         }
-
+        public DbSet<CustomerModel> Customers { get; set; }
         public DbSet<ProductModel> Products { get; set; }
         public DbSet<CategoryModel> Categories { get; set; }
         public DbSet<CartModel> Carts { get; set; }
