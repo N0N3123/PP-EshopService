@@ -24,7 +24,21 @@ namespace ProductService
             builder.Services.AddDbContext<DataContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
             builder.Services.AddHttpClient();
             var app = builder.Build();
-
+            using (var migrationScope = app.Services.CreateScope())
+            {
+                try
+                {
+                    var context = migrationScope.ServiceProvider.GetRequiredService<DataContext>();
+                    context.Database.Migrate();
+                    Console.WriteLine("Database migrations applied successfully.");
+                }
+                catch (Exception ex)
+                {
+                    var logger = migrationScope.ServiceProvider.GetRequiredService<ILogger<Program>>();
+                    logger.LogError(ex, "An error occurred while migrating the database.");
+                    throw;
+                }
+            }
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
