@@ -1,18 +1,18 @@
 using Microsoft.EntityFrameworkCore;
-using Product.Domain.Models;
-using Product.Domain.Repositories;
+using Eshop.Domain.Models;
+using Eshop.Domain.Repositories;
 using Xunit;
 
-namespace Product.Domain.Tests
+namespace EShop.Domain.Tests
 {
     public class CustomerRepositoryTests
     {
-        private DataContext GetInMemoryContext(string dbName)
+        private EshopDataContext GetInMemoryContext(string dbName)
         {
-            var options = new DbContextOptionsBuilder<DataContext>()
+            var options = new DbContextOptionsBuilder<EshopDataContext>()
                 .UseInMemoryDatabase(databaseName: dbName)
                 .Options;
-            return new DataContext(options);
+            return new EshopDataContext(options);
         }
 
         [Fact]

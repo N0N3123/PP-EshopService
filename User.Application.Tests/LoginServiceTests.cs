@@ -6,7 +6,6 @@ using Xunit;
 
 namespace User.Application.Tests
 {
-    // Prosta implementacja IJwtTokenService do testów
     public class FakeJwtTokenService : IJwtTokenService
     {
         public string GenerateToken(int userId, List<string> roles)

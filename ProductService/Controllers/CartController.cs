@@ -15,7 +15,15 @@ namespace ProductService.Controllers
         {
             _cartRepository = cartRepository;
         }
+        [HttpPost("addCart")]
+        public async Task<IActionResult> AddCart([FromBody] CartModel cart)
+        {
+            if (cart == null)
+                return BadRequest("Cart cannot be null");
 
+            var createdCart = await _cartRepository.AddCartAsync(cart);
+            return CreatedAtAction(nameof(GetCart), new { customerId = createdCart.CustomerId }, createdCart);
+        }
         [HttpGet("{customerId}")]
         public async Task<IActionResult> GetCart(int customerId)
         {

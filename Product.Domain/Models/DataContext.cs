@@ -12,7 +12,6 @@ namespace Product.Domain.Models
         public DataContext(DbContextOptions<DataContext> options) : base(options)
         {
         }
-        public DbSet<CustomerModel> Customers { get; set; }
         public DbSet<ProductModel> Products { get; set; }
         public DbSet<CategoryModel> Categories { get; set; }
         public DbSet<CartModel> Carts { get; set; }
@@ -39,7 +38,7 @@ namespace Product.Domain.Models
             // Product-Category relationship (many-to-one)
             modelBuilder.Entity<ProductModel>()
                 .HasOne(p => p.Category)
-                .WithMany() // No navigation property in CategoryModel
+                .WithMany()
                 .HasForeignKey(p => p.CategoryId)
                 .OnDelete(DeleteBehavior.Cascade);
 

@@ -44,7 +44,7 @@ namespace Product.Domain.Repositories
                 existing.Description = category.Description;
                 await _context.SaveChangesAsync();
             }
-            // Optionally throw if not found
+
         }
 
         public async Task DeleteAsync(string name)
@@ -55,7 +55,7 @@ namespace Product.Domain.Repositories
                 _context.Categories.Remove(category);
                 await _context.SaveChangesAsync();
             }
-            // Optionally throw if not found
+
         }
     }
 }

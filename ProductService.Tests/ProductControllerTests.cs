@@ -8,7 +8,6 @@ using Xunit;
 
 namespace ProductService.Tests
 {
-    // Prosta implementacja IProductRepository do testów
     public class FakeProductRepository : IProductRepository
     {
         public List<ProductModel> Products { get; set; } = new();
@@ -54,7 +53,6 @@ namespace ProductService.Tests
         private ProductController GetControllerWithFakeRepo()
         {
             var repo = new FakeProductRepository();
-            // Dodaj przyk³adow¹ kategoriê, jeœli test tego wymaga
             var httpClient = new System.Net.Http.HttpClient();
             return new ProductController(repo, httpClient);
         }

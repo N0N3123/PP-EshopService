@@ -10,5 +10,6 @@ namespace Product.Domain.Repositories
         Task RemoveItemAsync(int cartId, int itemId);
         Task UpdateItemAsync(int cartId, CartItemModel item);
         Task ClearCartAsync(int cartId);
+        Task<CartModel> AddCartAsync(CartModel cart);
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace Product.Domain.Models
+﻿namespace Eshop.Domain.Models
 {
     public class CustomerModel
     {

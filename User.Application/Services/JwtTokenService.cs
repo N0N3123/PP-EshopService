@@ -16,8 +16,9 @@ namespace User.Application.Services
         public JwtTokenService(IOptions<JwtSettings> settings)
         {
             _settings = settings.Value;
+            var keyPath = Path.Combine(AppContext.BaseDirectory, "data", "private.key");
             var rsa = RSA.Create();
-            rsa.ImportFromPem(File.ReadAllText("data/private.key")); // Załaduj klucz prywatny RSA
+            rsa.ImportFromPem(File.ReadAllText(keyPath));
             var creds = new SigningCredentials(new RsaSecurityKey(rsa), SecurityAlgorithms.RsaSha256);
         }
 

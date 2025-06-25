@@ -13,7 +13,12 @@ namespace Product.Domain.Repositories
         {
             _context = context;
         }
-
+        public async Task<CartModel> AddCartAsync(CartModel cart)
+        {
+            _context.Carts.Add(cart);
+            await _context.SaveChangesAsync();
+            return cart;
+        }
         public async Task<CartModel> GetCartByCustomerIdAsync(int customerId)
         {
             var cart = await _context.Carts

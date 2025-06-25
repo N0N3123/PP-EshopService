@@ -1,10 +1,11 @@
-using Product.Domain.Models;
+using Eshop.Domain.Models;
 using System.Threading.Tasks;
 
-namespace Product.Domain.Repositories
+namespace Eshop.Domain.Repositories
 {
     public interface ICustomerRepository
     {
         Task<CustomerModel> GetCustomerByIdAsync(int id);
+        Task<CustomerModel> AddCustomerAsync(CustomerModel customer);
     }
 }

@@ -7,7 +7,7 @@ using Xunit;
 
 namespace UserService.Tests
 {
-    // Simple fake implementation for testing
+
     public class FakeLoginService : ILoginService
     {
         public string Login(string username, string password)

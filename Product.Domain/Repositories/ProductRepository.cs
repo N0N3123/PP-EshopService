@@ -65,7 +65,7 @@ namespace Product.Domain.Repositories
             existingProduct.Price = product.Price;
             existingProduct.Quantity = product.Quantity;
             existingProduct.Category = product.Category;
-            existingProduct.UpdatedAt = DateTime.UtcNow; // Assuming UpdatedAt is a DateTime property
+            existingProduct.UpdatedAt = DateTime.UtcNow; 
             return _context.SaveChangesAsync();
         }
     }
