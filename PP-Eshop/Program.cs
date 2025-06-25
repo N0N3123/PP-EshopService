@@ -1,6 +1,5 @@
 
-using Eshop.Domain.Models;
-using Eshop.Domain.Repositories;
+
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -48,9 +47,6 @@ namespace PP_Eshop
                 options.AddPolicy("EmployeeOnly", policy =>
                     policy.RequireRole("Employee"));
             });
-            builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
-            builder.Services.AddDbContext<EshopDataContext>(options =>
-                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();

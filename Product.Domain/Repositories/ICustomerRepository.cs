@@ -1,7 +1,7 @@
-using Eshop.Domain.Models;
+using Product.Domain.Models;
 using System.Threading.Tasks;
 
-namespace Eshop.Domain.Repositories
+namespace Product.Domain.Repositories
 {
     public interface ICustomerRepository
     {

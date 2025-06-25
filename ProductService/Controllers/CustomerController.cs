@@ -1,9 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
-using Eshop.Domain.Models;
-using Eshop.Domain.Repositories;
+using Product.Domain.Models;
+using Product.Domain.Repositories;
 using System.Threading.Tasks;
 
-namespace PP_Eshop.Controllers
+namespace ProductService.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]

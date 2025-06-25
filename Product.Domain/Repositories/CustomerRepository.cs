@@ -1,13 +1,13 @@
-using Eshop.Domain.Models;
+using Product.Domain.Models;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 
-namespace Eshop.Domain.Repositories
+namespace Product.Domain.Repositories
 {
     public class CustomerRepository : ICustomerRepository
     {
-        private readonly EshopDataContext _context;
-        public CustomerRepository(EshopDataContext context)
+        private readonly DataContext _context;
+        public CustomerRepository(DataContext context)
         {
             _context = context;
         }

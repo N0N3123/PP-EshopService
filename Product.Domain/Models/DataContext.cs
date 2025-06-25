@@ -16,7 +16,7 @@ namespace Product.Domain.Models
         public DbSet<CategoryModel> Categories { get; set; }
         public DbSet<CartModel> Carts { get; set; }
         public DbSet<CartItemModel> CartItems { get; set; }
-
+        public DbSet<CustomerModel> Customers { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             // Product
@@ -51,6 +51,8 @@ namespace Product.Domain.Models
 
             // CartItem
             modelBuilder.Entity<CartItemModel>().HasKey(ci => ci.Id);
+            // Customer
+            modelBuilder.Entity<CustomerModel>().HasKey(c => c.Id); 
         }
     }
 }
