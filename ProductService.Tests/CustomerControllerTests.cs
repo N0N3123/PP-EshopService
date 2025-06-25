@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Eshop.Domain.Models;
-using Eshop.Domain.Repositories;
-using PP_Eshop.Controllers;
+using Product.Domain.Models;
+using Product.Domain.Repositories;
+using ProductService.Controllers;
 using System.Threading.Tasks;
 using Xunit;
 
@@ -10,12 +10,12 @@ namespace EShop.Domain.Tests
 {
     public class CustomerControllerTests
     {
-        private EshopDataContext GetInMemoryContext(string dbName)
+        private DataContext GetInMemoryContext(string dbName)
         {
-            var options = new DbContextOptionsBuilder<EshopDataContext>()
+            var options = new DbContextOptionsBuilder<DataContext>()
                 .UseInMemoryDatabase(databaseName: dbName)
                 .Options;
-            return new EshopDataContext(options);
+            return new DataContext(options);
         }
 
         [Fact]

@@ -20,6 +20,8 @@
   <ItemGroup>
     <ProjectReference Include="..\Eshop.Domain\Eshop.Domain.csproj" />
     <ProjectReference Include="..\PP-Eshop\PP-Eshop.csproj" />
+    <ProjectReference Include="..\Product.Domain\Product.Domain.csproj" />
+    <ProjectReference Include="..\ProductService\ProductService.csproj" />
   </ItemGroup>
 
   <ItemGroup>
